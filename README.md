@@ -19,8 +19,8 @@ func TestBeegoElk() {
     logs.SetLogger("esLogger", `{"dsn":"http://192.168.31.230:9200/","level":7}`)
     
     b, _ := json.Marshal(map[string]interface{}{
-        "requ":   "请求测试",
-        "resp":   "响应测试",
+        "requ":   "Test for Request",
+        "resp":   "Test for Response",
         "others": 12345,
     })
     

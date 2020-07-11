@@ -12,8 +12,8 @@ func TestElk(t *testing.T) {
 	logs.SetLogger("esLogger", `{"dsn":"http://192.168.31.230:9200/","level":7, "index":"logs-elk"}`)
 
 	b, _ := json.Marshal(map[string]interface{}{
-		"requ":   "Request to test",
-		"resp":   "Response to test",
+		"requ":   "Test for Request",
+		"resp":   "Test for Response",
 		"others": 12345,
 	})
 
