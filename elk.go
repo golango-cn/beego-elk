@@ -70,6 +70,7 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 		idx := ElkLogDocument{
 			Timestamp: when.Format(time.RFC3339),
 			Msg:       msg,
+			LogLevel: levelPrefix[level],
 		}
 		b, err := json.Marshal(idx)
 		if err != nil {
@@ -125,6 +126,7 @@ func (e elkLogger) originMsg(msg string, level int) string {
 type ElkLogDocument struct {
 	Timestamp string `json:"timestamp"`
 	Msg       string `json:"msg"`
+	LogLevel  string `json:"log_level"`
 }
 
 func init() {
