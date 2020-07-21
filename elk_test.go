@@ -17,7 +17,7 @@ func TestElk(t *testing.T) {
 		"others": 12345,
 	})
 
-	//If it is in JSON format, it is automatically converted to columns in ELK
+	//If JSON format, it is automatically converted to columns in ELK
 	logs.Info(string(b))
 	logs.Error(string(b))
 
