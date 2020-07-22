@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/astaxie/beego/logs"
-	_ "github.com/golango-cn/beego-elk"
 )
 
 // EsLogger
