@@ -99,6 +99,8 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 		DocumentType: "logs",
 		Body:         strings.NewReader(string(body)),
 	}
+	req.Timeout = 3 * time.Second
+
 	_, err = req.Do(context.Background(), el.Client)
 	return err
 
