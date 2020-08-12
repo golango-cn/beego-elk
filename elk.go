@@ -44,7 +44,8 @@ func (el *elkLogger) Init(jsonconfig string) error {
 		return errors.New("missing prefix")
 	} else {
 		conn, err := elasticsearch.NewClient(elasticsearch.Config{
-			Addresses: []string{el.DSN},
+			Addresses:  []string{el.DSN},
+			MaxRetries: 1,
 		})
 		if err != nil {
 			return err
