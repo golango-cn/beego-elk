@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"github.com/astaxie/beego/logs"
 	"github.com/elastic/go-elasticsearch/v6"
 	"github.com/elastic/go-elasticsearch/v6/esapi"
@@ -105,9 +106,9 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 	now := time.Now()
 	resp, err := req.Do(context.Background(), el.Client)
 	if err != nil {
-		logs.Error("Write ElasticSearch Error：%s %d", err, time.Now().Sub(now).Seconds())
+		log.Fatalf("Write ElasticSearch Error：%s %f\n", err, time.Now().Sub(now).Seconds())
 	} else {
-		logs.Info("Write ElasticSearch Success：%s %d", resp.String(), time.Now().Sub(now).Seconds())
+		log.Printf("Write ElasticSearch Success：%s %f\n", resp.String(), time.Now().Sub(now).Seconds())
 	}
 	return err
 
