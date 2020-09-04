@@ -100,13 +100,14 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 		DocumentType: "logs",
 		Body:         strings.NewReader(string(body)),
 	}
-	req.Timeout = 3 * time.Second
+	req.Timeout = 180 * time.Second
 
+	now := time.Now()
 	resp, err := req.Do(context.Background(), el.Client)
 	if err != nil {
-		logs.Error("Write ElasticSearch Error：%s", err)
+		logs.Error("Write ElasticSearch Error：%s %d", err, time.Now().Sub(now).Seconds())
 	} else {
-		logs.Info("Write ElasticSearch Success：%s", resp.String())
+		logs.Info("Write ElasticSearch Success：%s %d", resp.String(), time.Now().Sub(now).Seconds())
 	}
 	return err
 
