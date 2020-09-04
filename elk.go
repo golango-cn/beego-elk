@@ -102,7 +102,12 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 	}
 	req.Timeout = 3 * time.Second
 
-	_, err = req.Do(context.Background(), el.Client)
+	resp, err := req.Do(context.Background(), el.Client)
+	if err != nil {
+		logs.Error("Write ElasticSearch Error：%s", err)
+	} else {
+		logs.Info("Write ElasticSearch Success：%s", resp.String())
+	}
 	return err
 
 }
