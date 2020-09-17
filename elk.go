@@ -106,7 +106,7 @@ func (el *elkLogger) WriteMsg(when time.Time, msg string, level int) error {
 	now := time.Now()
 	resp, err := req.Do(context.Background(), el.Client)
 	if err != nil {
-		log.Fatalf("Write ElasticSearch Error：%s %f\n", err, time.Now().Sub(now).Seconds())
+		log.Printf("Write ElasticSearch Error：%s %f\n", err, time.Now().Sub(now).Seconds())
 	} else {
 		log.Printf("Write ElasticSearch Success：%s %f\n", resp.String(), time.Now().Sub(now).Seconds())
 	}
